@@ -13,7 +13,7 @@ mnist = tf.keras.datasets.mnist
 train_x = tf.keras.utils.normalize(train_x, axis=1)
 test_x = tf.keras.utils.normalize(test_x, axis=1)
 
-CREATING_MODE = True
+CREATING_MODE = False
 EPOCHS = 50
 
 def create_model():
