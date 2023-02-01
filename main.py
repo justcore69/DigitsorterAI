@@ -38,19 +38,14 @@ def load_model():
     while os.path.isfile(f"train/train_conv_{image_index}.png"):
         img = cv2.imread(f"train/train_conv_{image_index}.png")
         img = np.invert(np.array([img]))
-        image = img
 
-        plt.imshow(image[0], cmap=plt.cm.binary)
-        plt.show()
-
-        image = image.reshape(28, 28, 3)
-        image = image.astype('float32') / 255.0
-        image = np.mean(image, axis=2, keepdims=False)
-        image = np.expand_dims(image, axis=0)
+        image = np.expand_dims(np.mean(img.reshape(28, 28, 3).astype('float32') / 255.0, axis=2, keepdims=False), axis=0)
 
         pred = model.predict(image)
-
         print(f"This digit may be {np.argmax(pred)}")
+
+        plt.imshow(img[0], cmap=plt.cm.binary)
+        plt.show()
 
         image_index+=1
 
