@@ -1,11 +1,9 @@
-import PIL
-from PIL import Image 
 import os
-import image
+
 import cv2
 import numpy as np
-import matplotlib.pyplot as plt
 import tensorflow as tf
+import matplotlib.pyplot as plt
 
 mnist = tf.keras.datasets.mnist
 (train_x, train_y), (test_x, test_y) = mnist.load_data()
@@ -54,4 +52,6 @@ def main():
         create_model()
     else:
         load_model()
-main()
+
+if __name__ == "__main__":
+    main()
