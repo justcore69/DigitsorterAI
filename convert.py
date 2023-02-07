@@ -12,13 +12,22 @@ def convert_images():
             img_array = np.array(img)
 
             # Set the threshold value
-            threshold = 4
+            threshold = 200
             if i == 1:
                 print(img_array)
-            # Create the binary image
-            binary_img = (img_array > threshold) * 1
+            
+            height, width = img_array.shape
+
+            # Iterate over all the pixels
+            for x in range(width):
+                for y in range(height):
+
+                    if img_array[y, x] > threshold:
+                        img_array[y, x] = 255
+                    else:
+                        img_array[y, x] = 0
 
             # Save the binary image
-            Image.fromarray(binary_img.astype(np.uint8)).save(f"train/train_conv_{i}.png")
+            Image.fromarray(img_array.astype(np.uint8)).save(f"train/train_conv_{i}.png")
 
-            #print(f"Converted {i} with {len(img.getbands())} bands; type: {img.mode}")
+            print(f"Converted {i} with {len(img.getbands())} bands; type: {img.mode}")
