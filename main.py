@@ -1,9 +1,14 @@
+import PIL
+from PIL import Image 
+from PIL import ImageOps
 import os
-
+import image
 import cv2
 import numpy as np
-import tensorflow as tf
 import matplotlib.pyplot as plt
+import tensorflow as tf
+
+import convert
 
 mnist = tf.keras.datasets.mnist
 (train_x, train_y), (test_x, test_y) = mnist.load_data()
@@ -32,6 +37,8 @@ def load_model():
     print(accuracy)
 
     image_index = 1
+
+    convert.convert_images()
 
     while os.path.isfile(f"train/train_conv_{image_index}.png"):
         img = cv2.imread(f"train/train_conv_{image_index}.png")
